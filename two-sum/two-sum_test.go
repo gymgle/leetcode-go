@@ -25,7 +25,7 @@ func Test_twoSum(t *testing.T) {
 
 	caseNum := 3
 	for i := 0; i < caseNum; i++ {
-		if ret := twoSum(tests[i], targets[i]); ret[0] != results[i][0] && ret[1] != results[i][1] {
+		if ret := twoSum(tests[i], targets[i]); ret[0] != results[i][0] || ret[1] != results[i][1] {
 			t.Error("test failed")
 		} else {
 			t.Log("test passed")
