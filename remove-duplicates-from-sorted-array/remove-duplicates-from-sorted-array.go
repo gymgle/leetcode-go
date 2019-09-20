@@ -16,18 +16,29 @@ https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 // Time complextiy : O(n)
 // Space complexity : O(1)
 
+/*
+解题思路：
+数组完成排序后，可以放置两个指针 i 和 j，其中 i 是慢指针，而 j 是快指针。
+只要 nums[i] == nums[j]，增加 j 以跳过重复项。
+
+当遇到 nums[i] != nums[j] 时，跳过重复项的运行已经结束，因此必须把它（nums[j]）的值复制到 nums[i+1]，
+然后递增 i，接着将再次重复相同的过程，直到 j 到达数组的末尾为止。
+
+在遍历 nums 数组时，可以用 for range 组合。
+*/
 func removeDuplicates(nums []int) int {
-	if len(nums) == 0 {
-		return 0
+	if len(nums) < 2 {
+		return len(nums)
 	}
 
-	index := 1
-	for i := 1; i < len(nums); i++ {
-		if nums[i] != nums[index-1] {
-			nums[index] = nums[i]
-			index++
+	i := 0
+	for _, v := range nums[1:] {
+		if v == nums[i] {
+			continue
 		}
+		nums[i+1] = v
+		i++
 	}
 
-	return index
+	return i + 1
 }
