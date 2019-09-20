@@ -1,6 +1,8 @@
 package leetcode
 
 /*
+80. Remove Duplicates from Sorted Array II
+
 Follow up for "Remove Duplicates":
 What if duplicates are allowed at most twice?
 
@@ -12,26 +14,30 @@ Your function should return length = 5, with the first five elements of nums bei
 https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/
 */
 
+/*
+解题思路：在上一道题的基础上加一个计数器 count
+count 初始化为 1 表示最多重复 1 次。当 count 初始化为 0 时，退化为上一题。
+*/
 func removeDuplicates(nums []int) int {
 	if len(nums) <= 2 {
 		return len(nums)
 	}
 
-	index := 0
+	i := 0
 	count := 1
-	for i := 1; i < len(nums); i++ {
-		if nums[index] == nums[i] && count == 0 {
+	for _, v := range nums[1:] {
+		if nums[i] == v && count == 0 {
 			continue
 		} else {
-			if nums[index] == nums[i] {
+			if nums[i] == v {
 				count--
 			} else {
 				count = 1
 			}
 
-			index++
-			nums[index] = nums[i]
+			i++
+			nums[i] = v
 		}
 	}
-	return index + 1
+	return i + 1
 }
