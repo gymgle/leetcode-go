@@ -12,13 +12,32 @@ return [0, 1].
 https://leetcode.com/problems/two-sum
 */
 
-func twoSum(nums []int, target int) []int {
+// 只用一次循环来解决问题，用target减去当前数字，判断目标数字是否在之前遍历的时候出现过
+func twoSum1(nums []int, target int) []int {
 	m := make(map[int]int)
-	for i := 0; i < len(nums); i++ {
-		if _, exists := m[target-nums[i]]; exists {
-			return []int{m[target-nums[i]], i}
+
+	for i, v := range nums {
+		if _, exists := m[target-v]; exists {
+			return []int{m[target-v], i}
 		}
-		m[nums[i]] = i
+		m[v] = i
 	}
+
+	return nil
+}
+
+// 思路是先用map把nums中的数字保存起来，下一个循环遍历中判断想要的数是否在map中
+func twoSum2(nums []int, target int) []int {
+	m := make(map[int]int)
+	for i, v := range nums {
+		m[v] = i
+	}
+
+	for i, v := range nums {
+		if _, ok := m[target-v]; ok {
+			return []int{i, m[target-v]}
+		}
+	}
+
 	return nil
 }
