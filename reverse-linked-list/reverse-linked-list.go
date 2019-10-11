@@ -1,5 +1,3 @@
-package leetcode
-
 /**
  * 206. Reverse Linked List
  *
@@ -11,6 +9,8 @@ package leetcode
  *
  * https://leetcode.com/problems/reverse-linked-list/
  */
+
+package leetcode
 
 // 主要考察翻转的写法，用 go 语言可以精简到一行，不需要 c/c++ 使用中间变量
 
