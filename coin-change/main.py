@@ -1,3 +1,4 @@
+# up to down
 class Solution(object):
     def coinChange(self, coins, amount):
         """
@@ -26,10 +27,29 @@ class Solution(object):
         return dp(amount)
 
 
+# down to up
+class Solution2(object):
+    def coinChange(self, coins, amount):
+        """
+        :type coins: List[int]
+        :type amount: int
+        :rtype: int
+        """
+        dp = [float('INF')] * (amount + 1)
+        dp[0] = 0
+
+        for i in range(1, amount + 1):
+            for c in coins:
+                if c > i:
+                    continue
+                dp[i] = min(dp[i], dp[i - c] + 1)
+        return int(dp[amount]) if dp[amount] != float('INF') else -1
+
+
 if __name__ == '__main__':
     coins = [1, 2, 5]
     amount = 11
 
-    s = Solution()
+    s = Solution2()
     print s.coinChange(coins, amount)
 
