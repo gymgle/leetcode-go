@@ -8,6 +8,9 @@ class Solution(object):
         :type b: List[int]
         :rtype: int
         """
+        # implement with reduce in one line
+        # return reduce(lambda p1, p2: (pow(a, p2) % 1337) * pow(p1, 10) % 1337, b, 1)
+
         if not b:
             return 1
         last = b.pop()
