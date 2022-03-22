@@ -14,12 +14,10 @@ class Solution:
             return head
 
         p = head
-        num = p.val
         while p.next:
-            if p.next.val == num:
+            if p.next.val == p.val:
                 p.next = p.next.next
             else:
-                num = p.next.val
                 p = p.next
 
         return head
