@@ -1,3 +1,6 @@
+from typing import Optional
+
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -20,3 +23,16 @@ class Solution:
                 p = p.next
 
         return head
+
+
+if __name__ == '__main__':
+    head = ListNode(1, None)
+    head.next = ListNode(1, None)
+    head.next.next = ListNode(2, None)
+    head.next.next.next = ListNode(2, None)
+
+    s = Solution()
+    s.deleteDuplicates(head)
+    while head:
+        print(head.val)
+        head = head.next
